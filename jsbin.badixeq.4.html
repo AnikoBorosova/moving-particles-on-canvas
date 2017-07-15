@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by AnikoBorosova (http://jsbin.com/badixeq/4/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+<meta name="description" content="canvas + JS - Moving particles">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Moving particles with JavaScript</title>
+</head>
+<body>
+  <canvas id="myCanvas" height="600" width="1000" style="border: 1px solid black"></canvas>
+<script id="jsbin-javascript">
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+
+var cw = canvas.width;
+var ch = canvas.height;
+
+
+var particles = [];
+for (var i = 0; i < 50; i++) {
+  particles.push(new create_particle());
+}
+
+function create_particle() {
+
+  this.x = Math.random() * cw;
+  this.y = Math.random() * ch;
+
+  var r = Math.random() * 255 >> 0;
+  var g = Math.random() * 255 >> 0;
+  var b = Math.random() * 255 >> 0;
+  this.color = "rgba(" + r + ", " + g + ", " + b + ", 0.5)";
+}
+
+var x = 100;
+var y = 100;
+
+function draw() {
+  context.fillStyle = "rgba(0, 0, 0, 0.3)";
+  context.fillRect(0, 0, cw, ch);
+
+  for (var t = 0; t < particles.length; t++) {
+    var p = particles[t];
+
+    context.beginPath();
+
+    var gradient = context.createRadialGradient(p.x, p.y, 0, p.x, p.y, 50);
+    gradient.addColorStop(0, "white");
+    gradient.addColorStop(0.5, p.color);
+    gradient.addColorStop(1, "black");
+
+    context.arc(p.x, p.y, 10, Math.PI * 2, false);
+    context.fillStyle = gradient;
+    context.fill();
+
+    p.x++;
+    p.y++;
+
+    if (p.x < -50) p.x = cw + 50;
+    if (p.y < -50) p.y = ch + 50;
+    if (p.x > cw + 50) p.x = -50;
+    if (p.y > ch + 50) p.y = -50;
+  }
+}
+
+setInterval(draw, 33);
+</script>
+</body>
+</html>
