@@ -1,2 +1,7 @@
 # moving-particles-on-canvas
-Moving multicoloured particles on canvas Built with HTML5, JavaScript
+Multicoloured, circle-shaped particles moving on canvas
+# Built with
+- HTML5
+- JavaScript
+# Live version
+https://anikoborosova.github.io/moving-particles-on-canvas/
