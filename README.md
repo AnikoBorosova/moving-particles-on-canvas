@@ -1,4 +1,4 @@
-# moving-particles-on-canvas
+# Moving particles on canvas
 Multicoloured, circle-shaped particles moving on canvas
 # Built with
 - HTML5
